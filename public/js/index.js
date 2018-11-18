@@ -12,12 +12,13 @@ hideFeedback();
     
 $('.grid').masonry({
   itemSelector: '.grid-item',
-  columnWidth: '.grid-sizer',
-  percentPosition: true
+  columnWidth: 175,
+//  percentPosition: true,
+  gutter: 20
 });
  
 var $grid = $('.grid').masonry({
-  columnWidth: 160,
+  columnWidth: 175,
   itemSelector: '.grid-item'
 });
 

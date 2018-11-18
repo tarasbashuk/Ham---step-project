@@ -751,22 +751,27 @@ height: 136px;
 
 .grid-sizer,
 .grid-item {
-  width: 20%;
+  width: 175px;
+    margin-top: 20px;
 }
 
 .grid-item {
-  height: 120px;
-  float: left;
+/*  height: 120px;*/
+/*  float: left;*/
+/*
   border: 2px solid #333;
   border-color: rgba(0, 0, 0, 0.0);
-  border-radius: 5px;
+*/
+/*  border-radius: 5px;*/
 }
 
-.grid-item--width2 { width:  40%; }
-.grid-item--width3 { width:  60%; }
+.grid-item--width2 { width:  370px; }
+.grid-item--width3 { width:  240px; }
+/*
 .grid-item--height2 { height: 200px; }
 .grid-item--height3 { height: 260px; }
 .grid-item--height4 { height: 360px; }
+*/
 
 .gallery-img {
     height: 100%;
