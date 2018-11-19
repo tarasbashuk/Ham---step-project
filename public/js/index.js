@@ -24,21 +24,19 @@ var $grid = $('.grid').masonry({
 
 $('#load-more-gallery-btn').on( 'click', function() {
   var elems = [ getItemElement(), getItemElement(), getItemElement() ];
-  // make jQuery object
   var $elems = $( elems );
   $grid.append( $elems ).masonry( 'appended', $elems );
 });
 
-// create <div class="grid-item"></div>
 function getItemElement() {
   var elem = document.createElement('div');
-  var wRand = Math.random();
+//  var wRand = Math.random();
   var hRand = Math.random();
   let imageNum = Math.floor((Math.random() * 8) + 1);
-  var widthClass = wRand > 0.8 ? 'grid-item--width3' : wRand > 0.6 ? 'grid-item--width2' : '';
-  var heightClass = hRand > 0.85 ? 'grid-item--height4' : hRand > 0.6 ? 'grid-item--height3' : hRand > 0.35 ? 'grid-item--height2' : '';
-  elem.className = 'grid-item ' + widthClass + ' ' + heightClass;
-  elem.innerHTML = `<img src="img/best_images/${imageNum}.png" alt="gallery image${imageNum}" class="gallery-img">`;
+//  var widthClass = wRand > 0.8 ? 'grid-item--width2' : '';
+  var heightClass = hRand > 0.75 ? 'grid-item--height2' : '';
+  elem.innerHTML = `<img src="img/best_images/${imageNum}.png" alt="gallery image${imageNum}" >`;
+ elem.className = 'grid-item' + " " + heightClass;
   return elem;
 }
     
@@ -239,4 +237,4 @@ $('#prev').click(function () {
   });
 
 
-function showSearch () {};
+//function showSearch () {};
