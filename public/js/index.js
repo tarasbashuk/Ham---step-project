@@ -1,48 +1,52 @@
 $('document').ready(function () {
 
-// прячет скрытые элементы в карусели
-    
-function hideFeedback() {
- $(".hide").fadeOut();
-}
-hideFeedback();
+    // прячет скрытые элементы в карусели
 
-    
-//masonry
-    
-$('.grid').masonry({
-  itemSelector: '.grid-item',
-  columnWidth: 175,
-//  percentPosition: true,
-  gutter: 20
-});
- 
-var $grid = $('.grid').masonry({
-  columnWidth: 175,
-  itemSelector: '.grid-item'
-});
+    function hideFeedback() {
+        $(".hide").fadeOut();
+    }
+    hideFeedback();
 
-$('#load-more-gallery-btn').on( 'click', function() {
-  var elems = [ getItemElement(), getItemElement(), getItemElement() ];
-  var $elems = $( elems );
-  $grid.append( $elems ).masonry( 'appended', $elems );
-});
 
-function getItemElement() {
-  var elem = document.createElement('div');
-//  var wRand = Math.random();
-  var hRand = Math.random();
-  let imageNum = Math.floor((Math.random() * 8) + 1);
-//  var widthClass = wRand > 0.8 ? 'grid-item--width2' : '';
-  var heightClass = hRand > 0.75 ? 'grid-item--height2' : '';
-  elem.innerHTML = `<img src="img/best_images/${imageNum}.png" alt="gallery image${imageNum}" >`;
- elem.className = 'grid-item' + " " + heightClass;
-  return elem;
-}
-    
-//переключатель по вкладкам сервисов
-    
-function showOurServices() {
+    //masonry
+
+    $('.grid').masonry({
+        itemSelector: '.grid-item',
+        columnWidth: 175,
+        gutter: 20
+    });
+
+    var $grid = $('.grid').masonry({
+      columnWidth: 175,
+      itemSelector: '.grid-item'
+    });
+
+
+ 	$('#load-more-gallery-btn').on( 'click', function() {
+		let elems = [ getItemElement(), getItemElement(), getItemElement() ];
+		let $elems = $( elems );
+		$('.grid').imagesLoaded( function() {
+			$('.grid').append( $elems ).masonry( 'appended', $elems );
+		});
+	});
+
+
+    function getItemElement() {
+        let elem = document.createElement('img');
+        //  var wRand = Math.random();
+//        var hRand = Math.random();
+        let imageNum = Math.floor((Math.random() * 8) + 1);
+        //  var widthClass = wRand > 0.8 ? 'grid-item--width2' : '';
+//        var heightClass = hRand > 0.75 ? 'grid-item--height2' : '';
+        elem.setAttribute('src', `img/best_images/${imageNum}.png`);
+        elem.setAttribute('alt', `gallery image${imageNum}`);
+        elem.className = 'grid-item';
+        return elem;
+    }
+
+    //переключатель по вкладкам сервисов
+
+    function showOurServices() {
         let activeIndex = $(".active-service-tab").index();
         let index = $(this).index();
         console.log(activeIndex);
@@ -58,10 +62,11 @@ function showOurServices() {
     $("#our-services-tab-container p").on("click", showOurServices);
 
 
-//карусель
-    
-$('#prev').click(function () {
+    //карусель
+
+    $('#prev').click(function () {
         let currentIndex = $('.small-photo-carousel-active').index();
+        console.log(currentIndex);
         $(".feedback-main-item").eq(currentIndex).fadeOut(500);
         $('.small-photo-carousel-active').removeClass('small-photo-carousel-active');
         $('.small-photo-carousel').eq(currentIndex - 1).addClass('small-photo-carousel-active');
@@ -91,8 +96,8 @@ $('#prev').click(function () {
 
     });
 
-//  добавляет рандомно 12 элементов при загрузке страницы
-    
+    //  добавляет рандомно 12 элементов при загрузке страницы
+
     let count = 0;
 
     function addImages() {
@@ -114,7 +119,7 @@ $('#prev').click(function () {
 
         for (let i = 0; i < 3; i++) {
             let imageNum = Math.floor((Math.random() * 7) + 1);
-                    let elem = $('.work-example-img-container').append(`<div class="work-example-img-wraper"><img src="img/our_amazing_work/2/web-design${imageNum}.jpg" alt="web-design image${imageNum}" class="web-design">
+            let elem = $('.work-example-img-container').append(`<div class="work-example-img-wraper"><img src="img/our_amazing_work/2/web-design${imageNum}.jpg" alt="web-design image${imageNum}" class="web-design">
             <div class="work-example-img-info">
                 <div class="circles-container">
                     <div class="circle1"><i class="fas fa-link" id="chain-circle"></i></div>
@@ -124,13 +129,13 @@ $('#prev').click(function () {
                 <p>Web Design</p>
             </div>
     </div>`)
-            
-        arrayElements.push(elem);
+
+            arrayElements.push(elem);
         }
-        
+
         for (let i = 0; i < 3; i++) {
             let imageNum = Math.floor((Math.random() * 7) + 1);
-           let elem = $('.work-example-img-container').append(`<div class="work-example-img-wraper"><img src="img/our_amazing_work/3/landing-page${imageNum}.jpg" alt="landing-page image${imageNum}" class="landing-page">
+            let elem = $('.work-example-img-container').append(`<div class="work-example-img-wraper"><img src="img/our_amazing_work/3/landing-page${imageNum}.jpg" alt="landing-page image${imageNum}" class="landing-page">
             <div class="work-example-img-info">
                 <div class="circles-container">
                     <div class="circle1"><i class="fas fa-link" id="chain-circle"></i></div>
@@ -140,12 +145,12 @@ $('#prev').click(function () {
                 <p>Landing Page</p>
             </div>
     </div>`)
-          arrayElements.push(elem);
+            arrayElements.push(elem);
         }
 
         for (let i = 0; i < 3; i++) {
             let imageNum = Math.floor((Math.random() * 10) + 1);
-              let elem = $('.work-example-img-container').append(`<div class="work-example-img-wraper"><img src="img/our_amazing_work/4/wordpress${imageNum}.jpg" alt="wordpress image${imageNum}" class="wordpress">
+            let elem = $('.work-example-img-container').append(`<div class="work-example-img-wraper"><img src="img/our_amazing_work/4/wordpress${imageNum}.jpg" alt="wordpress image${imageNum}" class="wordpress">
             <div class="work-example-img-info">
                 <div class="circles-container">
                     <div class="circle1"><i class="fas fa-link" id="chain-circle"></i></div>
@@ -154,7 +159,7 @@ $('#prev').click(function () {
                 <h3>creative design</h3>
                 <p>Wordpress</p>
             </div>
-    </div>`) 
+    </div>`)
             arrayElements.push(elem);
         }
         $('.work-example-img-container').append(arrayElements);
@@ -165,15 +170,15 @@ $('#prev').click(function () {
     }
     addImages();
 
-//добавляет по 12 элементов по нажатию на кнопку
-    
-    function loadMoreImages () {
-    $('.preloader-container').fadeIn(1000);
-    setTimeout(function() {
-    $('.preloader-container').fadeOut(); 
-    addImages();
-    },2000);
-}
+    //добавляет по 12 элементов по нажатию на кнопку
+
+    function loadMoreImages() {
+        $('.preloader-container').fadeIn(1000);
+        setTimeout(function () {
+            $('.preloader-container').fadeOut();
+            addImages();
+        }, 2000);
+    }
     $('#load-more-amazing-work-btn').on('click', loadMoreImages);
 
     // сортирует our-amazing-work
@@ -183,23 +188,23 @@ $('#prev').click(function () {
         $('.active-work-example-tab').removeClass().addClass('work-example-tab');
         $(this).removeClass().addClass('active-work-example-tab');
         let buttonIndex = $(this).index();
-        
+
         if (buttonIndex === 0)
-        showAllImages();
-        
+            showAllImages();
+
         if (buttonIndex === 1)
-        showGraphicDesignImages();
+            showGraphicDesignImages();
 
         if (buttonIndex === 2)
-        showWebDesignImages();
-        
+            showWebDesignImages();
+
         if (buttonIndex === 3)
-        showLandingPageImages();
-        
-         if (buttonIndex === 4)
-        showWordpressImages();
-        
-            function showAllImages() {
+            showLandingPageImages();
+
+        if (buttonIndex === 4)
+            showWordpressImages();
+
+        function showAllImages() {
             $('.graphic-design').fadeIn(1000);
             $('.web-design').fadeIn(1000);
             $('.landing-page').fadeIn(1000);
@@ -212,21 +217,22 @@ $('#prev').click(function () {
             $('.landing-page').fadeOut(1000);
             $('.wordpress').fadeOut(1000);
         }
-        
-          function showWebDesignImages() {
+
+        function showWebDesignImages() {
             $('.graphic-design').fadeOut(1000);
             $('.web-design').fadeIn(1000);
             $('.landing-page').fadeOut(1000);
             $('.wordpress').fadeOut(1000);
         }
-            function showLandingPageImages() {
+
+        function showLandingPageImages() {
             $('.graphic-design').fadeOut(1000);
             $('.web-design').fadeOut(1000);
             $('.landing-page').fadeIn(1000);
             $('.wordpress').fadeOut(1000);
         }
-        
-          function showWordpressImages() {
+
+        function showWordpressImages() {
             $('.graphic-design').fadeOut(1000);
             $('.web-design').fadeOut(1000);
             $('.landing-page').fadeOut(1000);
@@ -234,7 +240,7 @@ $('#prev').click(function () {
         }
     }
     $('#amazing-work-tab-container p').on('click', sortImages);
-  });
+});
 
 
 //function showSearch () {};
